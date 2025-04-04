@@ -6,7 +6,7 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:59:52 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/04 15:59:52 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/04 16:24:24 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ typedef struct s_push_swap
 }			t_push_swap;
 
 // STACK_INIT
-void		init_stack(t_stack *stack, int argc, char **argv);
+void		init_stack(t_stack *stack, int size);
+void		fill_stack(t_stack *stack, int argc, char **argv);
 
 // STACK_INIT_HELPER
 int			count_numbers(char *str);
