@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/04 15:46:26 by ganersis          #+#    #+#             */
+/*   Updated: 2025/04/04 15:46:27 by ganersis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/stack.h"
 
 static void	init_stack_helper(t_stack *stack, int argc, char **argv)
@@ -10,9 +22,9 @@ static void	init_stack_helper(t_stack *stack, int argc, char **argv)
 		stack->data = (int *)malloc(sizeof(int) * stack->size);
 		if (!stack->data)
 			return ;
-		i = 0;
-		while (i < stack->size)
-			stack->data[i++] = ft_atoi(argv[i + 1]);
+		i = -1;
+		while (++i < stack->size)
+			stack->data[i] = ft_atoi(argv[i + 1]);
 	}
 	else
 	{
@@ -57,6 +69,11 @@ void	init_stack(t_stack *stack, int argc, char **argv)
 	{
 		if (!allocate_and_fill_stack(stack, argv[1]))
 			return ;
+		if (stack->size > 0)
+		{
+			stack->top = stack->data[0];
+			stack->bottom = stack->data[stack->size - 1];
+		}
 	}
 	else
 		init_stack_helper(stack, argc, argv);

@@ -1,52 +1,67 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation_limits.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/04 15:46:18 by ganersis          #+#    #+#             */
+/*   Updated: 2025/04/04 16:01:02 by ganersis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/push_swap.h"
 #include <limits.h>
 
-/**
- * @brief Проверяет, находится ли строковое представление числа в пределах INT
- *
- * @param str Строка для проверки
- * @return int 1, если число в пределах INT, 0 в противном случае
- */
+static int	handle_sign_and_spaces(char *str, int *i, int *sign)
+{
+	while (str[*i] && (str[*i] == ' ' || str[*i] == '\t' || str[*i] == '\n'
+			|| str[*i] == '\v' || str[*i] == '\f' || str[*i] == '\r'))
+		(*i)++;
+	if (str[*i] == '-' || str[*i] == '+')
+	{
+		if (str[*i] == '-')
+			*sign = -1;
+		(*i)++;
+	}
+	return (*i);
+}
+
 int	is_within_int_limits(char *str)
 {
 	long	num;
 	int		sign;
 	int		i;
 
+	if (!str || !*str)
+		return (0);
 	num = 0;
 	sign = 1;
 	i = 0;
-	// Проверка знака
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	// Преобразование в число и проверка переполнения
+	i = handle_sign_and_spaces(str, &i, &sign);
+	if (!str[i] || !ft_isdigit(str[i]))
+		return (0);
 	while (str[i] && ft_isdigit(str[i]))
 	{
-		num = num * 10 + (str[i] - '0');
-		// Проверка на выход за пределы INT
-		if ((sign == 1 && num > INT_MAX) || (sign == -1 && num
-				* sign < INT_MIN))
+		if ((sign == 1 && (num > INT_MAX / 10 || (num == INT_MAX / 10 && str[i]
+						- '0' > INT_MAX % 10))) || (sign == -1 && (num > \
+					-(INT_MIN / 10) || (num == -(INT_MIN / \
+						10) && str[i] - '0' > -(INT_MIN % 10)))))
 			return (0);
+		num = num * 10 + (str[i] - '0');
 		i++;
 	}
+	if (str[i] != '\0')
+		return (0);
 	return (1);
 }
 
-/**
- * @brief Проверяет, находятся ли все аргументы в пределах INT
- *
- * @param argc Количество аргументов
- * @param argv Массив строк аргументов
- * @return int 1, если все числа в пределах INT, 0 в противном случае
- */
 int	check_int_limits_args(int argc, char **argv)
 {
 	int	i;
 
+	if (!argv)
+		return (0);
 	i = 1;
 	while (i < argc)
 	{
@@ -57,49 +72,42 @@ int	check_int_limits_args(int argc, char **argv)
 	return (1);
 }
 
-/**
- * @brief Проверяет, находятся ли все числа из строки в пределах INT
- *
- * @param str Строка с числами, разделенными пробелами
- * @return int 1, если все числа в пределах INT, 0 в противном случае
- */
+static int	check_int_limits_string_helper(char *str, int *i)
+{
+	char	*num_start;
+	int		j;
+	char	temp;
+
+	num_start = &str[*i];
+	j = 0;
+	while (str[*i + j] && str[*i + j] != ' ')
+		j++;
+	temp = str[*i + j];
+	str[*i + j] = '\0';
+	if (!is_within_int_limits(num_start))
+	{
+		str[*i + j] = temp;
+		return (1);
+	}
+	str[*i + j] = temp;
+	*i += j;
+	return (0);
+}
+
 int	check_int_limits_string(char *str)
 {
-	int i;
-	int j;
-	char *num_start;
-	char temp;
+	int	i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (str[i])
 	{
-		// Пропускаем пробелы
 		while (str[i] && str[i] == ' ')
 			i++;
-
 		if (str[i])
-		{
-			// Находим конец числа
-			num_start = &str[i];
-			j = 0;
-			while (str[i + j] && str[i + j] != ' ')
-				j++;
-
-			// Временно заменяем пробел на '\0'
-			temp = str[i + j];
-			str[i + j] = '\0';
-
-			// Проверяем пределы
-			if (!is_within_int_limits(num_start))
-			{
-				str[i + j] = temp;
+			if (check_int_limits_string_helper(str, &i))
 				return (0);
-			}
-
-			str[i + j] = temp;
-			i += j;
-		}
 	}
-
 	return (1);
 }

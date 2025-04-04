@@ -1,5 +1,5 @@
 CC					=	cc
-CFLAGS				=	-Iinclude #-Wall -Wextra -Werror
+CFLAGS				=	-Iinclude -Wall -Wextra -Werror
 RM					=	rm -rf
 PUSH_SWAP			=	push_swap
 NAME				=	$(PUSH_SWAP) $(CHECKER)

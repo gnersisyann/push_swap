@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_init_helper.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/04 15:46:28 by ganersis          #+#    #+#             */
+/*   Updated: 2025/04/04 15:46:28 by ganersis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/stack.h"
 
 int	count_numbers(char *str)
@@ -28,9 +40,13 @@ int	get_next_number(char **str)
 	int		num;
 	char	*start;
 
+	if (!str || !*str)
+		return (0);
 	while (**str == ' ')
 		(*str)++;
 	start = *str;
+	if (!**str)
+		return (0);
 	while (**str && **str != ' ')
 		(*str)++;
 	if (**str)

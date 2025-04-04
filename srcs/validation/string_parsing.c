@@ -1,11 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string_parsing.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/04 15:46:22 by ganersis          #+#    #+#             */
+/*   Updated: 2025/04/04 15:46:23 by ganersis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/push_swap.h"
 
-/**
- * @brief Подсчитывает количество чисел в строке, разделенных пробелами
- *
- * @param str Строка с числами
- * @return int Количество чисел
- */
 int	count_numbers_in_string(char *str)
 {
 	int	i;
@@ -31,23 +37,38 @@ int	count_numbers_in_string(char *str)
 	return (count);
 }
 
-/**
- * @brief Извлекает числа из строки в массив
- *
- * @param str Строка с числами
- * @param count Указатель для сохранения количества извлеченных чисел
- * @return int* Массив извлеченных чисел или NULL при ошибке
- */
+static void	extract_numbers_from_string_helper(char *tmp_ptr, int num_count,
+		int **nums)
+{
+	char	*start;
+	char	temp;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < num_count)
+	{
+		while (*tmp_ptr == ' ')
+			tmp_ptr++;
+		start = tmp_ptr;
+		j = 0;
+		while (tmp_ptr[j] && tmp_ptr[j] != ' ')
+			j++;
+		temp = tmp_ptr[j];
+		tmp_ptr[j] = '\0';
+		(*nums)[i] = ft_atoi(start);
+		tmp_ptr[j] = temp;
+		tmp_ptr += j;
+		i++;
+	}
+}
+
 int	*extract_numbers_from_string(char *str, int *count)
 {
-	int *nums;
-	int i;
-	int num_count;
-	char *tmp;
-	char *tmp_ptr;
-	char *start;
-	int j;
-	char temp;
+	int		*nums;
+	int		num_count;
+	char	*tmp;
+	char	*tmp_ptr;
 
 	num_count = count_numbers_in_string(str);
 	*count = num_count;
@@ -63,22 +84,7 @@ int	*extract_numbers_from_string(char *str, int *count)
 		return (NULL);
 	}
 	tmp_ptr = tmp;
-	i = 0;
-	while (i < num_count)
-	{
-		while (*tmp_ptr == ' ')
-			tmp_ptr++;
-		start = tmp_ptr;
-		j = 0;
-		while (tmp_ptr[j] && tmp_ptr[j] != ' ')
-			j++;
-		temp = tmp_ptr[j];
-		tmp_ptr[j] = '\0';
-		nums[i] = ft_atoi(start);
-		tmp_ptr[j] = temp;
-		tmp_ptr += j;
-		i++;
-	}
+	extract_numbers_from_string_helper(tmp_ptr, num_count, &nums);
 	free(tmp);
 	return (nums);
 }
