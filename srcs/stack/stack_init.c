@@ -6,16 +6,12 @@
 /*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:46:26 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/04 16:25:23 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/04 17:06:07 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/stack.h"
 
-/**
- * Инициализирует стек заданного размера.
- * Выделяет память и заполняет её нулями.
- */
 void	init_stack(t_stack *stack, int size)
 {
 	if (!stack)
@@ -34,9 +30,6 @@ void	init_stack(t_stack *stack, int size)
 	ft_bzero(stack->data, sizeof(int) * size);
 }
 
-/**
- * Заполняет стек значениями из аргументов командной строки
- */
 static void	fill_stack_helper(t_stack *stack, int argc, char **argv)
 {
 	int	i;
@@ -48,14 +41,11 @@ static void	fill_stack_helper(t_stack *stack, int argc, char **argv)
 		stack->data[i] = ft_atoi(argv[i + 1]);
 	if (stack->size > 0)
 	{
-		stack->top = stack->data[0];
-		stack->bottom = stack->data[stack->size - 1];
+		stack->top = 0;
+		stack->bottom = stack->size - 1;
 	}
 }
 
-/**
- * Заполняет стек значениями из строки (для случая с одним аргументом)
- */
 static int	allocate_and_fill_from_string(t_stack *stack, char *str)
 {
 	char	*tmp;
@@ -72,15 +62,12 @@ static int	allocate_and_fill_from_string(t_stack *stack, char *str)
 	free(tmp);
 	if (stack->size > 0)
 	{
-		stack->top = stack->data[0];
-		stack->bottom = stack->data[stack->size - 1];
+		stack->top = 0;
+		stack->bottom = stack->size - 1;
 	}
 	return (1);
 }
 
-/**
- * Заполняет стек данными из аргументов командной строки
- */
 void	fill_stack(t_stack *stack, int argc, char **argv)
 {
 	if (!stack || !stack->data)

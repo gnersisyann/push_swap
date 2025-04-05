@@ -1,8 +1,11 @@
-CC					=	cc
-CFLAGS				=	-Iinclude -Wall -Wextra -Werror
-RM					=	rm -rf
+CC					=	gcc
+CFLAGS				=	-Wall -Wextra -Werror
+ifeq ($(DEBUG),1)
+CFLAGS				+=	-g3 -O0
+endif
+RM					=	rm -f
 PUSH_SWAP			=	push_swap
-NAME				=	$(PUSH_SWAP) $(CHECKER)
+NAME				=	$(PUSH_SWAP) #$(CHECKER)
 
 # Libraries
 LIBFT				=	libft.a
@@ -21,9 +24,14 @@ VALIDATION_SRC_DIR	=	srcs/validation
 STACK_INC			=	includes/stack.h
 PUSH_SWAP_INC		=	$(STACK_INC) includes/push_swap.h
 
-# Файлы исходного кода
 STACK_SRC			=	$(STACK_SRC_DIR)/stack_init.c \
-						$(STACK_SRC_DIR)/stack_init_helper.c
+						$(STACK_SRC_DIR)/stack_init_helper.c \
+						$(STACK_SRC_DIR)/stack_utils.c \
+						$(STACK_SRC_DIR)/operations/push.c \
+						$(STACK_SRC_DIR)/operations/swap.c \
+						$(STACK_SRC_DIR)/operations/rotate.c \
+						$(STACK_SRC_DIR)/operations/r_rotate.c 
+
 VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/validation_main.c \
 						$(VALIDATION_SRC_DIR)/validation_numbers.c \
 						$(VALIDATION_SRC_DIR)/validation_duplicates.c \
@@ -31,7 +39,13 @@ VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/validation_main.c \
 						$(VALIDATION_SRC_DIR)/validation_quoted.c \
 						$(VALIDATION_SRC_DIR)/validation_limits.c \
 						$(VALIDATION_SRC_DIR)/error_handling.c
-PUSH_SWAP_SRC		=	main.c $(STACK_SRC) $(VALIDATION_SRC) #sort.c move.c chunk_sort.c \
+
+PS_SRC				=	$(PUSH_SWAP_SRC_DIR)/default_sorts.c
+
+PUSH_SWAP_SRC		=	main.c \
+						$(STACK_SRC) \
+						$(VALIDATION_SRC) \
+						$(PS_SRC) #sort.c move.c chunk_sort.c \
 						opti_sort_asap.c opti_sort_three.c opti_to_the_top.c \
 						opti_post_sort.c opti_post_sort_utils.c
 
@@ -70,13 +84,17 @@ lib_fclean:
 					$(MAKE_LIB) $(LIBFT_DIR) fclean
 
 clean:				lib_clean
-					$(RM) obj
+					rm -rf obj
 
 fclean:				clean lib_fclean
 					$(RM) $(NAME)
 
 re:					fclean all
 
+debug:
+					@echo "Компиляция с отладочной информацией..."
+					@$(MAKE) DEBUG=1
+
 .SILENT:
 
-.PHONY:				all bonus lib_clean lib_fclean clean fclean re
+.PHONY:				all bonus lib_clean lib_fclean clean fclean re debug

@@ -3,22 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   validation_main.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:46:14 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/04 15:54:16 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/04 20:35:00 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-/**
- * @brief Основная функция валидации входных аргументов
- *
- * @param argc Количество аргументов
- * @param argv Массив строк аргументов
- * @return int 1, если ввод корректен, иначе вызывает ft_error
- */
 int	validate_input(int argc, char **argv)
 {
 	int	i;

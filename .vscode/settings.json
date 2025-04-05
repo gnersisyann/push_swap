@@ -1,6 +1,56 @@
 {
+    "editor.defaultFormatter": "keyhr.42-c-format",
+    "42header.username": "ganersis",
+    "42header.email": "marvin@42.fr",
+    "makefile.configureOnOpen": false,
     "files.associations": {
+        "algorithm": "c",
         "push_swap.h": "c",
-        "stack.h": "c"
-    }
+        "stack.h": "c",
+        "libft.h": "c",
+        "limits.h": "c",
+        "stdlib.h": "c",
+        "unistd.h": "c",
+        "stdio.h": "c",
+        "iostream": "cpp"
+    },
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.renderWhitespace": "all",
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/includes",
+        "${workspaceFolder}/libs/libft"
+    ],
+    "C_Cpp.default.cStandard": "c99",
+    "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
+    "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.dimInactiveRegions": true,
+    "C_Cpp.enhancedColorization": "enabled",
+    "debug.inlineValues": "on",
+    "debug.showBreakpointsInOverviewRuler": true,
+    "debug.toolBarLocation": "docked",
+    "debug.internalConsoleOptions": "neverOpen",
+    "debug.console.closeOnEnd": false,
+    "debug.openDebug": "openOnDebugBreak",
+    "debug.allowBreakpointsEverywhere": true,
+    "C_Cpp.debugShortcut": true,
+    "debug.onTaskErrors": "showErrors",
+    "debug.showInStatusBar": "always",
+    "debug.autoExpandLazyVariables": "on",
+    "C_Cpp.formatting": "vcFormat",
+    "C_Cpp.vcFormat.indent.preserveComments": true,
+    "C_Cpp.vcFormat.indent.namespaceContents": true,
+    "C_Cpp.loggingLevel": "Debug",
+    "C_Cpp.debuggers": {
+        "pipeCwd": "${workspaceFolder}",
+        "logging": {
+            "engineLogging": true
+        }
+    },
+    "debug.javascript.autoExpandGetters": true,
+    "debug.javascript.autoAttachFilter": "smart",
+    "C_Cpp.default.browse.limitSymbolsToIncludedHeaders": false,
+    "C_Cpp.default.browse.path": [
+        "${workspaceFolder}"
+    ]
 }

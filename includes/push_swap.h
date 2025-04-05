@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:59:50 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/04 15:59:50 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/04 19:46:53 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../libs/libft/libft.h"
+# include "stack.h"
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -36,4 +37,7 @@ int		is_within_int_limits(char *str);
 int		check_int_limits_args(int argc, char **argv);
 int		check_int_limits_string(char *str);
 
+//------DEFAULT SORTS------//
+void	sort_3(t_push_swap *ps);
+void	sort_4_5(t_push_swap *ps);
 #endif

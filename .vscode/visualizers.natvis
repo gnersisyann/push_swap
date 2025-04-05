@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <!-- Визуализатор для структуры t_stack -->
+  <Type Name="t_stack">
+    <DisplayString>{{ size={size} current={bottom-top+1} top={top} bottom={bottom} }}</DisplayString>
+    <Expand>
+      <Item Name="[size]">size</Item>
+      <Item Name="[top index]">top</Item>
+      <Item Name="[bottom index]">bottom</Item>
+      <Item Name="[top value]">data[top]</Item>
+      <Item Name="[bottom value]">data[bottom]</Item>
+      <ArrayItems>
+        <Size>size</Size>
+        <ValuePointer>data</ValuePointer>
+      </ArrayItems>
+      <CustomListItems>
+        <Variable Name="i" InitialValue="0"/>
+        <Variable Name="idx" InitialValue="top"/>
+        <Size>size</Size>
+        <Loop>
+          <If Condition="i >= size">
+            <Break/>
+          </If>
+          <Item Name="[{i}]">data[idx]</Item>
+          <Exec>idx = (idx + 1) % size</Exec>
+          <Exec>i++</Exec>
+        </Loop>
+      </CustomListItems>
+    </Expand>
+  </Type>
+
+  <!-- Визуализатор для структуры t_push_swap -->
+  <Type Name="t_push_swap">
+    <DisplayString>{{ stack A: size={a.size} top={a.top} bottom={a.bottom} | stack B: size={b.size} top={b.top} bottom={b.bottom} }}</DisplayString>
+    <Expand>
+      <ExpandedItem>a</ExpandedItem>
+      <ExpandedItem>b</ExpandedItem>
+    </Expand>
+  </Type>
+</AutoVisualizer> 

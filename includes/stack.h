@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:59:52 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/04 16:24:24 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/05 13:28:04 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,27 @@ void		fill_stack(t_stack *stack, int argc, char **argv);
 // STACK_INIT_HELPER
 int			count_numbers(char *str);
 int			get_next_number(char **str);
+
+// STACK_UTILS
+
+int			next_up(t_stack *stack, int idx);
+int			next_down(t_stack *stack, int idx);
+int			current_size(t_stack *stk);
+
+// STACK_OPERATIONS
+void		push_a(t_push_swap *data);
+void		push_b(t_push_swap *data);
+
+void		r_rotate_a(t_push_swap *data);
+void		r_rotate_b(t_push_swap *data);
+void		r_rotate_ab(t_push_swap *data);
+
+void		rotate_a(t_push_swap *data);
+void		rotate_b(t_push_swap *data);
+void		rotate_ab(t_push_swap *data);
+
+void		swap_a(t_push_swap *data);
+void		swap_b(t_push_swap *data);
+void		swap_ab(t_push_swap *data);
 
 #endif

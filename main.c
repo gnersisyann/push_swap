@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:46:05 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/04 16:24:26 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/04 20:14:33 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,39 @@ static void	cleanup(t_push_swap *ps)
 		free(ps->b.data);
 }
 
+// Отладочная функция для вывода содержимого стека
+void	debug_stack(t_stack *stk, const char *name)
+{
+	int	idx;
+	int	i;
+	int	curr_size;
+
+	curr_size = current_size(stk);
+	printf("Стек %s:\n", name);
+	printf("Размер массива: %d, Текущее кол-во элементов: %d\n", stk->size,
+		curr_size);
+	printf("Top index: %d, Top value: %d\n", stk->top, stk->data[stk->top]);
+	printf("Bottom index: %d, Bottom value: %d\n", stk->bottom,
+		stk->data[stk->bottom]);
+	printf("Элементы (по порядку от top): ");
+	if (curr_size > 0)
+	{
+		idx = stk->top;
+		i = 0;
+		while (i < curr_size)
+		{
+			printf("%d ", stk->data[idx]);
+			idx = next_down(stk, idx);
+			i++;
+		}
+	}
+	else
+	{
+		printf("(пусто)");
+	}
+	printf("\n\n");
+}
+
 int	main(int argc, char **argv)
 {
 	t_push_swap	ps;
@@ -37,26 +70,21 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	validate_input(argc, argv);
-	// Определяем размер стека
 	stack_size = get_stack_size(argc, argv);
-	// Инициализируем стеки
 	init_stack(&ps.a, stack_size);
 	init_stack(&ps.b, stack_size);
 	ps.op_list = NULL;
-	// Заполняем стек A значениями из аргументов
 	fill_stack(&ps.a, argc, argv);
-	// Вывод данных для отладки
-	printf("Стек A:\n");
-	for (int i = 0; i < ps.a.size; ++i)
-	{
-		printf("%d ", ps.a.data[i]);
-	}
-	printf("\nРазмер: %d", ps.a.size);
-	printf("\nВерх: %d", ps.a.top);
-	printf("\nНиз: %d\n", ps.a.bottom);
-	printf("\nСтек B (пустой):\n");
-	printf("Размер: %d\n", ps.b.size);
-	// Освобождаем память
+	// // Отладочная информация перед сортировкой
+	// printf("=== ПЕРЕД СОРТИРОВКОЙ ===\n");
+	// debug_stack(&ps.a, "A");
+	// debug_stack(&ps.b, "B");
+	// // Вызов сортировки
+	// sort_4_5(&ps);
+	// // Отладочная информация после сортировки
+	// printf("=== ПОСЛЕ СОРТИРОВКИ ===\n");
+	// debug_stack(&ps.a, "A");
+	// debug_stack(&ps.b, "B");
 	cleanup(&ps);
 	return (0);
 }
