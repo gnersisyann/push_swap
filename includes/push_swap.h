@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:59:50 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/04 19:46:53 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:15:43 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ int		check_int_limits_string(char *str);
 
 //------DEFAULT SORTS------//
 void	sort_3(t_push_swap *ps);
-void	sort_4_5(t_push_swap *ps);
+void	sort_5(t_push_swap *ps);
 #endif

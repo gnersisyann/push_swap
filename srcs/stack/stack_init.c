@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ganersis <ganersis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:46:26 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/04 17:06:07 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:13:38 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/stack.h"
+
+void	rank_stack(int *nums, int *ranks, t_stack *stack)
+{
+	int	i;
+	int	j;
+	int	rank;
+
+	i = -1;
+	while (++i < stack->size)
+	{
+		rank = 1;
+		j = -1;
+		while (++j < stack->size)
+			if (nums[i] > nums[j])
+				rank++;
+		ranks[i] = rank;
+	}
+	i = -1;
+	while (++i < stack->size)
+		stack->data[i] = ranks[i];
+	return (free(nums), free(ranks));
+}
 
 void	init_stack(t_stack *stack, int size)
 {
@@ -70,6 +92,9 @@ static int	allocate_and_fill_from_string(t_stack *stack, char *str)
 
 void	fill_stack(t_stack *stack, int argc, char **argv)
 {
+	int	*nums;
+	int	*ranks;
+
 	if (!stack || !stack->data)
 		return ;
 	if (argc == 2)
@@ -79,4 +104,12 @@ void	fill_stack(t_stack *stack, int argc, char **argv)
 	}
 	else
 		fill_stack_helper(stack, argc, argv);
+	nums = (int *)malloc(sizeof(int) * stack->size);
+	if (!nums)
+		return ;
+	ft_memcpy(nums, stack->data, sizeof(int) * stack->size);
+	ranks = (int *)malloc(sizeof(int) * stack->size);
+	if (!ranks)
+		return (free(nums));
+	rank_stack(nums, ranks, stack);
 }

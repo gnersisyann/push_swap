@@ -1,15 +1,13 @@
 #include "../../../includes/stack.h"
 
-static void	swap(t_stack *stk)
+void	swap(t_stack *stk)
 {
-	int	idx;
 	int	tmp;
 
-	if (current_size(stk) < 2)
+	if (stk->data[next_down(stk, stk->top)] == 0)
 		return ;
-	idx = next_down(stk, stk->top);
-	tmp = stk->data[idx];
-	stk->data[idx] = stk->data[stk->top];
+	tmp = stk->data[next_down(stk, stk->top)];
+	stk->data[next_down(stk, stk->top)] = stk->data[stk->top];
 	stk->data[stk->top] = tmp;
 }
 

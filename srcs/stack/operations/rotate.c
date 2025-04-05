@@ -2,10 +2,18 @@
 
 static void	rotate(t_stack *stk)
 {
-	if (current_size(stk) < 2)
-		return ;
-	stk->top = next_down(stk, stk->top);
-	stk->bottom = next_down(stk, stk->bottom);
+	if (is_full(stk))
+	{
+		stk->bottom = stk->top;
+		stk->top = next_down(stk, stk->top);
+	}
+	else
+	{
+		stk->bottom = next_down(stk, stk->bottom);
+		stk->data[stk->bottom] = stk->data[stk->top];
+		stk->data[stk->top] = 0;
+		stk->top = next_down(stk, stk->top);
+	}
 }
 void	rotate_a(t_push_swap *data)
 {

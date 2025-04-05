@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:59:52 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/05 13:28:04 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:17:15 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int			get_next_number(char **str);
 int			next_up(t_stack *stack, int idx);
 int			next_down(t_stack *stack, int idx);
 int			current_size(t_stack *stk);
+int			is_full(t_stack *stk);
+int			value(t_stack *stk, int n);
 
 // STACK_OPERATIONS
 void		push_a(t_push_swap *data);

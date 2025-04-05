@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:46:05 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/04 20:14:33 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:15:53 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,13 @@ int	main(int argc, char **argv)
 	init_stack(&ps.b, stack_size);
 	ps.op_list = NULL;
 	fill_stack(&ps.a, argc, argv);
-	// // Отладочная информация перед сортировкой
-	// printf("=== ПЕРЕД СОРТИРОВКОЙ ===\n");
-	// debug_stack(&ps.a, "A");
-	// debug_stack(&ps.b, "B");
-	// // Вызов сортировки
-	// sort_4_5(&ps);
-	// // Отладочная информация после сортировки
-	// printf("=== ПОСЛЕ СОРТИРОВКИ ===\n");
-	// debug_stack(&ps.a, "A");
-	// debug_stack(&ps.b, "B");
+	printf("=== ПЕРЕД СОРТИРОВКОЙ ===\n");
+	debug_stack(&ps.a, "A");
+	debug_stack(&ps.b, "B");
+	sort_5(&ps);
+	printf("=== ПОСЛЕ СОРТИРОВКИ ===\n");
+	debug_stack(&ps.a, "A");
+	debug_stack(&ps.b, "B");
 	cleanup(&ps);
 	return (0);
 }

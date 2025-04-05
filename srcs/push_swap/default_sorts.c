@@ -1,65 +1,5 @@
 #include "../../includes/push_swap.h"
 
-int	down_distance_to_top(t_stack *st, int idx)
-{
-	int	dist;
-
-	dist = 0;
-	while (idx != st->top)
-	{
-		++dist;
-		idx = next_down(st, idx);
-	}
-	return (dist);
-}
-
-int	up_distance_to_top(t_stack *st, int idx)
-{
-	int	dist;
-
-	dist = 0;
-	while (idx != st->top)
-	{
-		++dist;
-		idx = next_up(st, idx);
-	}
-	return (dist);
-}
-void	bring_min_to_top(t_push_swap *ps)
-{
-	int	idx;
-	int	min_idx;
-	int	min_val;
-	int	i;
-	int	count;
-
-	i = 0;
-	count = current_size(&ps->a);
-	if (count <= 1)
-		return ;
-	min_idx = ps->a.top;
-	min_val = ps->a.data[ps->a.top];
-	idx = next_down(&ps->a, ps->a.top);
-	count--;
-	while (count > 0)
-	{
-		if (ps->a.data[idx] < min_val)
-		{
-			min_val = ps->a.data[idx];
-			min_idx = idx;
-		}
-		idx = next_down(&ps->a, idx);
-		count--;
-	}
-	if (up_distance_to_top(&ps->a, min_idx) < down_distance_to_top(&ps->a,
-			min_idx))
-		while (i++ < up_distance_to_top(&ps->a, min_idx))
-			rotate_a(ps);
-	else
-		while (i++ < down_distance_to_top(&ps->a, min_idx))
-			r_rotate_a(ps);
-}
-
 void	sort_3(t_push_swap *ps)
 {
 	int	top_idx;
@@ -86,33 +26,18 @@ void	sort_3(t_push_swap *ps)
 		return (swap_a(ps), rotate_a(ps));
 }
 
-void	sort_4_5(t_push_swap *ps)
+void	sort_5(t_push_swap *ps)
 {
-	int	count;
-
-	count = current_size(&ps->a);
-	if (count == 4)
+	while (current_size(&ps->a) > 3)
 	{
-		bring_min_to_top(ps);
-		push_b(ps);
-		sort_3(ps);
-		push_a(ps);
-		return ;
+		if (value(&ps->a, 1) == 1 || value(&ps->a, 1) == 2)
+			push_b(ps);
+		else
+			rotate_a(ps);
 	}
-	bring_min_to_top(ps);
-	push_b(ps);
-	bring_min_to_top(ps);
-	push_b(ps);
+	if (value(&ps->b, 1) < value(&ps->b, 2))
+		swap_b(ps);
 	sort_3(ps);
 	push_a(ps);
 	push_a(ps);
 }
-
-/*
-5
-4
-3
-2   2
-1   1
-
-*/

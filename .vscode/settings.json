@@ -12,7 +12,8 @@
         "stdlib.h": "c",
         "unistd.h": "c",
         "stdio.h": "c",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "string_view": "c"
     },
     "editor.tabSize": 4,
     "editor.insertSpaces": false,
