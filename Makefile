@@ -14,9 +14,9 @@ LIBFT_DIR			=	libs/libft
 LIBFT_FILE			=	$(LIBFT_DIR)/$(LIBFT)
 CFLAGS				+=	-I $(LIBFT_DIR)/include -I includes
 
-LDFLAGS     = -L$(LIBFT_DIR) -l$(LIBFT_NAME)
+LDFLAGS     		= -L$(LIBFT_DIR) -l$(LIBFT_NAME)
 
-MAKE_LIB			=	make --no-print-directory -C
+MAKE_LIB			=	make -C
 
 STACK_SRC_DIR		=	srcs/stack
 PUSH_SWAP_SRC_DIR	=	srcs/push_swap
@@ -40,7 +40,8 @@ VALIDATION_SRC		=	$(VALIDATION_SRC_DIR)/validation_main.c \
 						$(VALIDATION_SRC_DIR)/validation_limits.c \
 						$(VALIDATION_SRC_DIR)/error_handling.c
 
-PS_SRC				=	$(PUSH_SWAP_SRC_DIR)/default_sorts.c
+PS_SRC				=	$(PUSH_SWAP_SRC_DIR)/default_sorts.c \
+						$(PUSH_SWAP_SRC_DIR)/main_sorts.c
 
 PUSH_SWAP_SRC		=	main.c \
 						$(STACK_SRC) \

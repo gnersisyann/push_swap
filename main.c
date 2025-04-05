@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:46:05 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/05 15:15:53 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:45:39 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	cleanup(t_push_swap *ps)
 		free(ps->b.data);
 }
 
-// Отладочная функция для вывода содержимого стека
 void	debug_stack(t_stack *stk, const char *name)
 {
 	int	idx;

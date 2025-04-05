@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:59:50 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/05 15:15:43 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/05 16:21:12 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,15 @@ int		is_within_int_limits(char *str);
 int		check_int_limits_args(int argc, char **argv);
 int		check_int_limits_string(char *str);
 
+//------SORT------//
+void	sort(t_push_swap *data);
+int		is_sorted(t_push_swap *data);
+
 //------DEFAULT SORTS------//
 void	sort_3(t_push_swap *ps);
 void	sort_5(t_push_swap *ps);
+
+//------CHUNK SORT------//
+void	chunk_sort(t_push_swap *data);
+
 #endif
