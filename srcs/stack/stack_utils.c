@@ -1,4 +1,16 @@
-#include "../includes/stack.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 18:01:08 by ganersis          #+#    #+#             */
+/*   Updated: 2025/04/07 18:01:16 by ganersis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/stack.h"
 
 int	current_size(t_stack *stk)
 {
@@ -15,6 +27,7 @@ int	current_size(t_stack *stk)
 	else
 		return (stk->bottom - stk->top + 1);
 }
+
 int	next_up(t_stack *stk, int index)
 {
 	if (current_size(stk) == 0)

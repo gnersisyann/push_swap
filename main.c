@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:46:05 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/05 15:45:39 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:14:54 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,48 +23,27 @@ static int	get_stack_size(int argc, char **argv)
 
 static void	cleanup(t_push_swap *ps)
 {
+	t_list	*tmp;
+
 	if (ps->a.data)
 		free(ps->a.data);
 	if (ps->b.data)
 		free(ps->b.data);
-}
-
-void	debug_stack(t_stack *stk, const char *name)
-{
-	int	idx;
-	int	i;
-	int	curr_size;
-
-	curr_size = current_size(stk);
-	printf("Стек %s:\n", name);
-	printf("Размер массива: %d, Текущее кол-во элементов: %d\n", stk->size,
-		curr_size);
-	printf("Top index: %d, Top value: %d\n", stk->top, stk->data[stk->top]);
-	printf("Bottom index: %d, Bottom value: %d\n", stk->bottom,
-		stk->data[stk->bottom]);
-	printf("Элементы (по порядку от top): ");
-	if (curr_size > 0)
+	while (ps->op_list)
 	{
-		idx = stk->top;
-		i = 0;
-		while (i < curr_size)
-		{
-			printf("%d ", stk->data[idx]);
-			idx = next_down(stk, idx);
-			i++;
-		}
+		tmp = ps->op_list->next;
+		free(ps->op_list->content); // Освобождаем содержимое узла
+		free(ps->op_list);          // Освобождаем сам узел
+		ps->op_list = tmp;
 	}
-	else
-	{
-		printf("(пусто)");
-	}
-	printf("\n\n");
 }
 
 int	main(int argc, char **argv)
 {
-	t_push_swap	ps;
-	int			stack_size;
+	t_push_swap		ps;
+	int				stack_size;
+	t_list			*op;
+	t_operations	*operation;
 
 	if (argc < 2)
 		return (0);
@@ -74,13 +53,13 @@ int	main(int argc, char **argv)
 	init_stack(&ps.b, stack_size);
 	ps.op_list = NULL;
 	fill_stack(&ps.a, argc, argv);
-	printf("=== ПЕРЕД СОРТИРОВКОЙ ===\n");
-	debug_stack(&ps.a, "A");
-	debug_stack(&ps.b, "B");
-	sort_5(&ps);
-	printf("=== ПОСЛЕ СОРТИРОВКИ ===\n");
-	debug_stack(&ps.a, "A");
-	debug_stack(&ps.b, "B");
+	sort(&ps);
+	op = ps.op_list;
+	while (op)
+	{
+		operation = (t_operations *)(op->content);
+		printf("%s\n", operation_to_string(*operation));
+		op = op->next;
+	}
 	cleanup(&ps);
-	return (0);
 }
