@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:59:01 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/08 15:43:47 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/08 18:02:01 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	is_sorted(t_push_swap *data)
 		rank++;
 		i = next_down(&data->a, i);
 	}
+	if (current_size(&data->b) != 0)
+		return (0);
 	return (1);
 }
 

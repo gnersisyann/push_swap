@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:44:12 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/08 16:45:22 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/08 18:05:29 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	err(void)
 {
-	ft_putstr_fd("Error\n", 1);
+	ft_putendl_fd("Error", 2);
 	exit(1);
 }
 

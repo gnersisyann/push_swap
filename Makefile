@@ -2,6 +2,7 @@ CC					=	cc
 CFLAGS				=	-Wall -Wextra -Werror
 RM					=	rm -f
 
+NAME				=	ps
 PUSH_SWAP			=	push_swap
 CHECKER				=	checker
 
@@ -66,7 +67,9 @@ OBJ_DIR				=	obj
 PUSH_SWAP_OBJ		=	$(PUSH_SWAP_SRC:%.c=$(OBJ_DIR)/%.o)
 CHECKER_OBJ			=	$(CHECKER_FULL_SRC:%.c=$(OBJ_DIR)/%.o)
 
-all:				$(PUSH_SWAP) $(CHECKER)
+$(NAME):			$(PUSH_SWAP)
+
+bonus:				$(CHECKER)
 
 $(OBJ_DIR)/%.o:		%.c
 					@mkdir -p $(dir $@)
@@ -91,4 +94,4 @@ fclean:				clean
 
 re:			fclean all
 
-.PHONY:				all clean fclean re debug
+.PHONY:				all clean fclean re bonus

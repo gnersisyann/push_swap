@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:44:16 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/08 16:42:03 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:53:05 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int	main(int argc, char **argv)
 	char		*op_arr;
 	char		*op_arr_orig;
 
-	if (argc < 2)
+	if (argc < 1)
 		err();
+	if (argc == 1)
+		return (0);
 	op_arr = ft_strdup("");
 	op_arr_orig = op_arr;
 	init_checker(&ps, argc, argv);
