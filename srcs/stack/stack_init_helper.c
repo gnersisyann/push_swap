@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:46:28 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/08 14:50:40 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:45:04 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	get_stack_size(int argc, char **argv)
 
 void	cleanup(t_push_swap *ps)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (ps->a.data)
 		free(ps->a.data);

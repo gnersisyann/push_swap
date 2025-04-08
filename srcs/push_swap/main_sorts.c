@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:59:01 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/07 17:59:54 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:43:47 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,4 @@ void	sort(t_push_swap *data)
 		sort_5(data);
 	else
 		chunk_sort(data);
-	// post_sort_optimization(data);
 }
