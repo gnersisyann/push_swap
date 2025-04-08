@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:59:52 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/08 12:51:44 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:50:55 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void			fill_stack(t_stack *stack, int argc, char **argv);
 // STACK_INIT_HELPER
 int				count_numbers(char *str);
 int				get_next_number(char **str);
+int				get_stack_size(int argc, char **argv);
 
 // STACK_UTILS
 

@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 15:59:50 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/07 17:47:22 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:56:49 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define BUFSIZE 4096
 
 typedef enum e_locations
 {
