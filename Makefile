@@ -31,7 +31,8 @@ PUSH_SWAP_INC		=	$(STACK_INC) includes/push_swap.h
 STACK_SRC			=	$(STACK_SRC_DIR)/stack_init.c \
 						$(STACK_SRC_DIR)/stack_init_helper.c \
 						$(STACK_SRC_DIR)/stack_utils.c \
-						$(STACK_SRC_DIR)/operations/op_to_st.c \
+						$(STACK_SRC_DIR)/operations/op_optimize.c \
+						$(STACK_SRC_DIR)/operations/op_utils.c \
 						$(STACK_SRC_DIR)/operations/push.c \
 						$(STACK_SRC_DIR)/operations/swap.c \
 						$(STACK_SRC_DIR)/operations/rotate.c \

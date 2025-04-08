@@ -6,13 +6,13 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:00:44 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/07 18:14:25 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/08 12:52:28 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/stack.h"
 
-void	push(t_stack *src, t_stack *dest)
+static void	push(t_stack *src, t_stack *dest)
 {
 	int	dest_i;
 
@@ -27,18 +27,14 @@ void	push(t_stack *src, t_stack *dest)
 
 void	push_a(t_push_swap *data)
 {
-	t_operations	op;
-
 	push(&data->b, &data->a);
-	op = pa;
-	ft_lstadd_back(&data->op_list, ft_lstnew(&op));
+	if (!data->checker_mode)
+		save_op(data, pa);
 }
 
 void	push_b(t_push_swap *data)
 {
-	t_operations	op;
-
 	push(&data->a, &data->b);
-	op = pb;
-	ft_lstadd_back(&data->op_list, ft_lstnew(&op));
+	if (!data->checker_mode)
+		save_op(data, pb);
 }
