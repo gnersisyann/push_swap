@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:44:16 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/08 17:53:05 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/10 17:43:05 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ int	main(int argc, char **argv)
 	fill_op(buf, &op_arr, &op_arr_orig);
 	checker_sort(&ps, op_arr);
 	free(op_arr_orig);
+	free(op_arr);
 	if (is_sorted(&ps))
 		ft_putstr_fd("OK\n", 1);
 	else
 		ft_putstr_fd("KO\n", 1);
+	cleanup(&ps);
 }
