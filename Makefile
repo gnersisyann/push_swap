@@ -1,5 +1,5 @@
 CC					=	cc
-CFLAGS				= -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS				=	-Wall -Wextra -Werror #-fsanitize=address
 RM					=	rm -f
 
 NAME				=	ps
@@ -67,31 +67,33 @@ OBJ_DIR				=	obj
 PUSH_SWAP_OBJ		=	$(PUSH_SWAP_SRC:%.c=$(OBJ_DIR)/%.o)
 CHECKER_OBJ			=	$(CHECKER_FULL_SRC:%.c=$(OBJ_DIR)/%.o)
 
-$(NAME):			$(PUSH_SWAP)
+all:					$(NAME) bonus
 
-bonus:				$(CHECKER)
+$(NAME):				$(PUSH_SWAP)
 
-$(OBJ_DIR)/%.o:		%.c
-					@mkdir -p $(dir $@)
-					$(CC) $(CFLAGS) -c $< -o $@
+bonus:					$(CHECKER)
+
+$(OBJ_DIR)/%.o:			%.c
+						@mkdir -p $(dir $@)
+						$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT_FILE):
-					$(MAKE_LIB) $(LIBFT_DIR)
+						$(MAKE_LIB) $(LIBFT_DIR)
 
-$(PUSH_SWAP):		$(LIBFT_FILE) $(PUSH_SWAP_OBJ)
-					$(CC) $(CFLAGS) $(PUSH_SWAP_OBJ) $(LDFLAGS) -o $@
+$(PUSH_SWAP):			$(LIBFT_FILE) $(PUSH_SWAP_OBJ)
+						$(CC) $(CFLAGS) $(PUSH_SWAP_OBJ) $(LDFLAGS) -o $@
 
-$(CHECKER):			$(LIBFT_FILE) $(CHECKER_OBJ)
-					$(CC) $(CFLAGS) $(CHECKER_OBJ) $(LDFLAGS) -o $@
+$(CHECKER):				$(LIBFT_FILE) $(CHECKER_OBJ)
+						$(CC) $(CFLAGS) $(CHECKER_OBJ) $(LDFLAGS) -o $@
 
 clean:
-			$(MAKE_LIB) $(LIBFT_DIR) clean
-			rm -rf $(OBJ_DIR)
+						$(MAKE_LIB) $(LIBFT_DIR) clean
+						rm -rf $(OBJ_DIR)
 
-fclean:				clean
-			$(MAKE_LIB) $(LIBFT_DIR) fclean
-			$(RM) $(PUSH_SWAP) $(CHECKER)
+fclean:					clean
+						$(MAKE_LIB) $(LIBFT_DIR) fclean
+						$(RM) $(PUSH_SWAP) $(CHECKER)
 
-re:			fclean all
+re:						fclean all
 
-.PHONY:				all clean fclean re bonus
+.PHONY:					all clean fclean re bonus

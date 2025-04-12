@@ -6,7 +6,7 @@
 /*   By: ganersis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:44:12 by ganersis          #+#    #+#             */
-/*   Updated: 2025/04/08 18:05:29 by ganersis         ###   ########.fr       */
+/*   Updated: 2025/04/12 09:46:40 by ganersis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,28 +79,29 @@ void	checker_sort(t_push_swap *ps, char *op_arr)
 	}
 }
 
-void	fill_op(char buf[BUFSIZE + 1], char **op_arr, char **op_arr_orig)
+void	fill_op(char buf[BUFSIZE + 1], char **op_arr)
 {
-	char	*temp;
 	int		read_bytes;
+	char	*tmp;
 
 	while (1)
 	{
 		read_bytes = read(0, buf, BUFSIZE);
 		if (read_bytes < 0)
 		{
-			free(*op_arr_orig);
+			free(*op_arr);
 			err();
 		}
 		else if (read_bytes == 0)
 			break ;
 		buf[read_bytes] = '\0';
-		temp = ft_strjoin(*op_arr, buf);
-		if (!temp)
+		tmp = ft_strjoin(*op_arr, buf);
+		if (!tmp)
 		{
-			free(*op_arr_orig);
+			free(*op_arr);
 			err();
 		}
-		*op_arr = temp;
+		free(*op_arr);
+		*op_arr = tmp;
 	}
 }
